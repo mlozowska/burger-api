@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "9eee8193-b7ec-44e2-91e0-93bbfada96b7",
+		"name": "burger-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all burgers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2f2a87b-a52b-46ea-8cfb-777ca9f09535",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"     pm.response.to.not.have.jsonBody(\"error\"); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "374ef888-36a1-487d-bc16-a8311027e891",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://my-burger-api.herokuapp.com/burgers/"
+			},
+			"response": []
+		},
+		{
+			"name": "Get burger by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f2799c7e-6034-4e97-8f0b-12059aabfe44",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "ff5edd3d-b8b4-4613-a834-cce67a902373",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://my-burger-api.herokuapp.com/burgers?id=0",
+					"protocol": "https",
+					"host": [
+						"my-burger-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"burgers"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new burger",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd62febe-a8ce-436b-810c-ae089a76e856",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Abba Burger\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "c0c4f629-22f8-45fa-9a32-80007cbaaefd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"id\": 29,\n    \"name\": \"Abba Burger\",\n    \"restaurant\": \"Abba Burgers\",\n    \"web\": \"www.abba.co.uk\",\n    \"description\": \"A mouth-watering honest beef burger\",\n    \"ingredients\": [\n      \"cheddar\",\n      \"beef\",\n      \"burger sauce\",\n      \"french mustard\",\n      \"pickes\",\n      \"onion\",\n      \"lettuce\"\n    ],\n    \"addresses\": [\n      {\n        \"addressId\": 0,\n        \"number\": \"23\",\n        \"line1\": \"Venn Street\",\n        \"line2\": \"Clapham\",\n        \"postcode\": \"SW4 0BD\",\n        \"country\": \"United States\"\n      }\n    ]\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://my-burger-api.herokuapp.com/burgers"
+			},
+			"response": []
+		},
+		{
+			"name": "Update burger data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8d48e384-0b9c-4372-bb09-48faabd972fd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "136185d3-5fdc-42a8-8ad4-efba9dd991c6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"id\": 29,\n    \"name\": \"Abba Burger\",\n    \"restaurant\": \"Abba Burgers\",\n    \"web\": \"https://www.facebook.com/moniqueabbaburgers/\",\n    \"description\": \"A mouth-watering honest beef burger\",\n    \"ingredients\": [\n      \"cheddar\",\n      \"beef\",\n      \"burger sauce\",\n      \"french mustard\",\n      \"pickes\",\n      \"onion\",\n      \"lettuce\"\n    ],\n    \"addresses\": [\n      {\n        \"addressId\": 0,\n        \"number\": \"23\",\n        \"line1\": \"Venn Street\",\n        \"line2\": \"Sao Paulo\",\n        \"postcode\": \"SW4 0BD\",\n        \"country\": \"Brazil\"\n      }\n    ]\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://my-burger-api.herokuapp.com/burgers/29",
+					"protocol": "https",
+					"host": [
+						"my-burger-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"burgers",
+						"29"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "29",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete created burger",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cc2e65a2-7923-4d5a-bf7e-90770a8714aa",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "bd51fe5e-fd8b-4949-a2de-20ff0735af28",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://my-burger-api.herokuapp.com/burgers/29"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a717eb83-e4c3-4552-b16e-7cd12fb84288",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a6ecfad2-d57a-4a57-a180-dadb57f1b297",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
